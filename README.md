@@ -1,6 +1,6 @@
 # Information-Saturated Bounce: Numerical Simulation Engine
 
-This repository hosts the full numerical simulation ecosystem for an information-theoretic cosmology. The engine tracks the spectral properties of Mutual Information (MI) Laplacians on relational quantum substrates, demonstrating a universal de Sitter attractor, a hard ultraviolet energy ceiling, and topology-independent Renormalization Group (RG) flows.
+This repository hosts the full numerical simulation ecosystem for a toy information-theoretic cosmology, built on a specific, stated ansatz (mutual information decaying with distance as a power law - see `main.tex` Sec. II). Given that ansatz, the engine tracks the spectral properties of Mutual Information (MI) Laplacians on relational quantum substrates, demonstrating a de Sitter attractor, a hard ultraviolet energy ceiling, and topology-independent Renormalization Group (RG) flows. The de Sitter attractor and topology-independence are direct algebraic consequences of the ansatz's own zero-decay limit, not independently derived physical results - see `main.tex` Sec. IV for the full discussion.
 
 ## 📁 Repository Structure
 
@@ -70,7 +70,7 @@ python code/critical_exponent_finite_size_scaling.py
 
 ## 🧠 Core Physics Framework
 
-This numerical architecture simulates the structural dynamics of a cosmic crunch transitioning into an inflationary bounce. By driving the network substrate down to the absolute information-saturation limit ($\alpha \rightarrow 0^+$), the code records three universal properties of the quantum substrate:
+This numerical architecture simulates the structural dynamics of a cosmic crunch transitioning into an inflationary bounce, under the paper's assumed entanglement-decay ansatz. By driving the network substrate down to the absolute information-saturation limit ($\alpha \rightarrow 0^+$), the code records three properties of this specific ansatz-driven model:
 
 1. **The Repulsive Switch ($w_{\text{eff}} \rightarrow -1.0$)**: Scale deformations fail to dilute matrix weights when distance dependencies collapse. The effective energy density freezes ($\rho_{\text{eff}} \propto a^0$), activating an instantaneous cosmological constant attractor state.
 2. **The Ultraviolet Energy Ceiling ($\lambda_1 = N$)**: Rather than diverging to infinity ($\rho \rightarrow \infty$), the fundamental spectral gap locks onto a rigid algebraic maximum bounded by the total system degrees of freedom. This acts as an inherent geometric shock absorber.
