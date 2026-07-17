@@ -18,7 +18,7 @@
 \date{\today}
 
 \begin{abstract}
-We present a first-principles, coordinate-free mechanism for a cyclic cosmological bounce derived from the spectral dynamics of mutual-information (MI) Laplacians on a relational quantum substrate. By tracking the evolution of the network substrate as it approaches an information-theoretic singularity, we demonstrate that the collapse of spatial locality corresponds to a strict thermodynamic phase transition where the entanglement decay exponent $\alpha \to 0^+$. Deriving the effective macroscopic energy density from the canonical partition function of the network spectrum, we show that this maximum saturation limit forces the effective equation of state parameter to converge smoothly and continuously onto the dark energy threshold ($w_{\text{eff}} = -1.0$). Simultaneously, the internal thermodynamic energy density saturates at a hard algebraic ceiling fixed by the total number of lattice nodes ($\rho_{\text{eff}} = N$). This invariant cutoff eliminates unphysical density divergences ($\rho \to \infty$), transforming the attractive cosmic crunch into an inherently regularized, gravitationally repulsive de Sitter expansion phase. We demonstrate the structural stability of this fixed-point attractor across disparate non-spatial graph families under extreme multi-channel chaotic noise. Finally, by mapping the Renormalization Group (RG) flow trajectories and numerically extracting their negative $\beta$-functions ($\beta < 0$), we reveal a universal low-dimensional attractor manifold. These results unify microscopic information bounds with cyclic macro-cosmology, consistent with Cosmic Inflation being a structural consequence of an information-saturated quantum crunch within this toy model. We flag two caveats directly rather than leaving them implicit: the equation-of-state identity is exact only in the $\beta\to0^+$ limit and is quantified to deviate by $\sim0.8\%$ at the finite $\beta=0.1$ used throughout this paper's figures (Table~\ref{tab:beta}), and our numerical sweeps reproduce this identity by construction from the same scaling relation it is derived from, which confirms the simulation code is correct but is not on its own independent evidence for the underlying physical mechanism.
+We present a first-principles, coordinate-free mechanism for a cyclic cosmological bounce derived from the spectral dynamics of mutual-information (MI) Laplacians on a relational quantum substrate. By tracking the evolution of the network substrate as it approaches an information-theoretic singularity, we demonstrate that the collapse of spatial locality corresponds to a strict thermodynamic phase transition where the entanglement decay exponent $\alpha \to 0^+$. Deriving the effective macroscopic energy density from the canonical partition function of the network spectrum, we show that this maximum saturation limit forces the effective equation of state parameter to converge smoothly and continuously onto the dark energy threshold ($w_{\text{eff}} = -1.0$). Simultaneously, the internal thermodynamic energy density saturates at a hard algebraic ceiling fixed by the total number of lattice nodes ($\rho_{\text{eff}} = N$). This invariant cutoff eliminates unphysical density divergences ($\rho \to \infty$), transforming the attractive cosmic crunch into an inherently regularized, gravitationally repulsive de Sitter expansion phase. We demonstrate the structural stability of this fixed-point attractor across disparate non-spatial graph families under extreme multi-channel chaotic noise. Finally, by mapping the Renormalization Group (RG) flow trajectories and numerically extracting their negative $\beta$-functions ($\beta < 0$), we reveal a universal low-dimensional attractor manifold. These results unify microscopic information bounds with cyclic macro-cosmology, consistent with Cosmic Inflation being a structural consequence of an information-saturated quantum crunch within this toy model. We flag three caveats directly rather than leaving them implicit: the equation-of-state identity is exact only in the $\beta\to0^+$ limit and is quantified to deviate by $\sim0.8\%$ at the finite $\beta=0.1$ used throughout this paper's figures (Table~\ref{tab:beta}); our numerical sweeps reproduce this identity by construction from the same scaling relation it is derived from, which confirms the simulation code is correct but is not on its own independent evidence for the underlying physical mechanism; and a previously reported pair of "universal" critical exponents ($A=0.0166$, $B=2.5310$) is withdrawn after a finite-size sweep showed both to be artifacts of a single (N, topology) configuration rather than universal quantities, and replaced with a genuinely size-stable exponent $p=1.122\pm0.008$ extracted by a more robust pooled fit (Sec.~\ref{sec:critexp}).
 \end{abstract}
 
 \maketitle
@@ -122,7 +122,7 @@ This invariant convergence provides an analytical guarantee that the mechanism i
 \subsection{Unified 3D Renormalization Group Manifold}
 The full multivariable synthesis of the cosmological framework is captured by mapping the dynamic trajectories within the unified 3D Renormalization Group (RG) phase space ($\lambda_1, w_{\text{eff}}, d_s$), tracking the simultaneous evolution of the substrate energy scale, the effective fluid parameter, and the continuous spectral dimension ($d_s$).
 
-As illustrated in the 3D phase portrait of Fig.~\ref{fig:manifold3d}, the individual trajectories from widely separated initial network configurations exhibit a powerful low-dimensional convergence. Although the random, small-world, and scale-free networks originate in entirely different sectors of the ultraviolet phase space, the non-linear flow rapidly forces them onto a singular, cohesive attractor manifold. In the infrared limit approaching maximum information saturation ($\lambda_1 \rightarrow N = 100$), all geometric memory of the initial wiring configurations is completely erased, collapsing onto a unique fixed point defined by $\lambda_1 = 100$, $w_{\text{eff}} = -1.0$, and $d_s \approx 5.25$.
+As illustrated in the 3D phase portrait of Fig.~\ref{fig:manifold3d}, the individual trajectories from widely separated initial network configurations exhibit a powerful low-dimensional convergence. Although the random, small-world, and scale-free networks originate in entirely different sectors of the ultraviolet phase space, the non-linear flow rapidly forces them onto a singular, cohesive attractor manifold. In the infrared limit approaching maximum information saturation ($\lambda_1 \rightarrow N = 100$), all geometric memory of the initial wiring configurations is completely erased, collapsing onto a unique fixed point defined by $\lambda_1 = 100$, $w_{\text{eff}} = -1.0$, and $d_s \approx 5.25$ -- the last of these an $N=100$-specific value, not a universal constant; it grows systematically with system size (Sec.~\ref{sec:critexp}).
 
 \begin{figure}[h]
 \centering
@@ -147,26 +147,44 @@ As illustrated in the dual-panel diagnostic of Fig.~\ref{fig:beta_functions}, th
 \label{fig:beta_functions}
 \end{figure}
 
-\subsection{Linearized Stability Criteria and Universal Critical Exponents}
+\subsection{Linearized Stability Criteria and Critical Exponents}
+\label{sec:critexp}
 To quantify the exact velocity at which the emergent cosmological parameters approach their respective infrared fixed points, we isolate the linearized stability data in the immediate neighborhood of the information-saturation threshold ($\ln\lambda_1 \rightarrow \ln N$). By applying a localized Savitzky--Golay smoothing filter to suppress discrete grid-rearrangement noise, we fit the continuous $\beta$-functions to first-order expansion models:
 \begin{equation}
-\beta_w \approx -A(w_{\text{eff}} + 1), \quad \beta_{d_s} \approx -B(d_s - d_s^*),
+\beta_w \approx -A(w_{\text{eff}} + 1), \quad \beta_{d_s} \approx -B(d_s - d_s^*).
 \end{equation}
-where $d_s^* \approx 5.25$ represents the stable geometric plateau.
-
-As illustrated in the smoothed tracking profiles of Fig.~\ref{fig:smoothed_stability}, the differential trajectories reveal clean scaling limits before vanishing at the complete-graph boundary. Linear regression of the near-boundary flow yields a universal fluid critical exponent of $A = 0.0166$ and a geometric critical exponent of $B = 2.5310$. The strictly positive values of these exponents confirm that perturbations away from the de Sitter state are exponentially damped out by the scaling flow. This mathematical structure establishes that the non-singular cosmic bounce is a robust, physically unavoidable phase attractor, defining the fundamental scaling laws that govern the transition from quantum relational information matrices to classical macroscopic spacetime.
+Fig.~\ref{fig:smoothed_stability} shows this procedure applied at a single configuration ($N=100$, Barab\'{a}si--Albert topology), yielding $A = 0.0166$ and $B = 2.5310$.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.82\columnwidth]{figures/smoothed_rg_stability_exponents.png}
-\caption{Smoothed Renormalization Group stability profiles displaying linear tracking parameters for the effective fluid scaling exponent $A$ (left) and geometric scale parameter $B$ (right).}
+\caption{Smoothed Renormalization Group stability profiles at a single configuration ($N=100$, Barab\'{a}si--Albert), displaying linear tracking parameters for the effective fluid scaling exponent $A$ (left) and geometric scale parameter $B$ (right). As shown below, neither value is stable against changes in $N$ or topology.}
 \label{fig:smoothed_stability}
 \end{figure}
+
+We tested whether $A$ and $B$ are actually universal by repeating the identical procedure across $N=50,100,200,400$ and all three graph topologies (\texttt{code/critical\_exponent\_\allowbreak finite\_size\_\allowbreak scaling.py}). They are not: $A$ ranges over more than two orders of magnitude (from $0.0006$ to $0.51$) and $B$ changes sign depending on topology -- from $-7.65$ for Erd\H{o}s--R\'{e}nyi at $N=50$ to $+5.81$ for Barab\'{a}si--Albert at the same $N$. The originally quoted pair is an artifact of the single configuration it was measured on, not a critical exponent, and we withdraw the ``universal'' characterization together with the specific values $A=0.0166$, $B=2.5310$.
+
+The same finite-size sweep shows that the spectral-dimension plateau $d_s^*$ is not universal either: it grows linearly with $\ln N$ ($d_s^* = 4.26, 5.25, 6.28, 7.36$ at $N=50,100,200,400$; regression against $\ln N$ gives slope $1.49\pm0.02$, $R^2=0.9995$). The previously reported $d_s^*\approx5.25$ is simply the $N=100$ instance of this size-dependent quantity -- the same pattern already found and corrected for the analogous claim in the companion paper \emph{emergent-topological-inflation}, which builds on the same underlying substrate construction.
+
+A genuinely stable quantity does exist in this flow, however. Following the more robust pooled fit used to correct the same issue in that companion paper, we fit the near-boundary flow directly to the power law
+\begin{equation}
+1 + w_{\text{eff}} = C\left(1 - \frac{\lambda_1}{N}\right)^{p},
+\end{equation}
+pooling all three topologies at each $N$. This gives $p = 1.14, 1.12, 1.12, 1.11$ at $N=50,100,200,400$ respectively (pooled: $p = 1.122 \pm 0.008$, $R^2=0.93$), stable to within a few percent across an eightfold change in $N$ -- consistent with, and independently reproducing, the exponent $p=1.11\pm0.02$ reported for the same near-boundary attractor behavior in \emph{emergent-topological-inflation}. We report this pooled exponent as the reproducible replacement for the withdrawn $A$/$B$ pair.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.72\columnwidth]{figures/critical_exponent_finite_size_scaling.png}
+\caption{Pooled near-boundary power-law fit $1+w_{\text{eff}} = C(1-\lambda_1/N)^p$ across $N=50$--$400$ and three graph topologies, giving the size-stable exponent $p=1.122\pm0.008$.}
+\label{fig:critexp_fss}
+\end{figure}
+
+The positive, size-stable exponent $p$ indicates that perturbations away from the de Sitter state are damped as the flow approaches the fixed point -- a more modest claim than the originally asserted exponential damping guaranteed by two independent, strictly positive linear-response coefficients, but one that is actually reproducible. This still supports the non-singular cosmic bounce as a genuine attractor of the scaling flow, rather than an artifact of a single simulated configuration.
 
 \section{Discussion and Concluding Remarks}
 The convergence profiles displayed across our multi-graph scaling engines complete the physical loop required for a fully realized cyclic cosmology. When a collapsing universe hits the information-saturation threshold:
 \begin{enumerate}
-\item Spatial locality dissolves entirely as the coordinates contract, and the graph unifies into a fixed fractional dimension of $d_s^* \approx 5.25$.
+\item Spatial locality dissolves entirely as the coordinates contract, and the graph unifies into a fractional spectral dimension that plateaus near $d_s^* \approx 5.25$ at this paper's reference size ($N=100$) -- a size-dependent value rather than a universal constant (Sec.~\ref{sec:critexp}).
 \item The energy density hits a hard, built-in structural cutoff at $\rho_{\text{eff}} = N$, absorbing the crunch.
 \item The simultaneous transition to a $w_{\text{eff}} = -1.0$ dark energy state instantly converts the attractive gravitational force into an overwhelming cosmological repulsion.
 \end{enumerate}

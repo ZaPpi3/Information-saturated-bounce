@@ -15,8 +15,9 @@ This repository hosts the full numerical simulation ecosystem for an information
 │   ├── rg_flow_trajectory_engine.py     # 2D cosmological vector field phase portrait
 │   ├── rg_manifold_3d_engine.py         # Unified 3D multivariable RG manifold
 │   ├── rg_beta_function_solver.py       # RG beta-function extraction
-│   ├── rg_stability_analysis.py         # Smooths trajectories, extracts critical exponents
-│   └── spectral_dimension_rg_flow.py    # Spectral dimension along the RG flow
+│   ├── rg_stability_analysis.py         # Smooths trajectories, extracts single-config exponents (superseded, see below)
+│   ├── spectral_dimension_rg_flow.py    # Spectral dimension along the RG flow
+│   └── critical_exponent_finite_size_scaling.py # Finite-size sweep: shows A/B aren't universal, replaces them with a stable pooled exponent p
 ├── figures/                             # PNG figures referenced by main.tex
 ├── main.tex                             # Manuscript source
 ├── main.pdf                             # Compiled manuscript
@@ -58,9 +59,13 @@ python code/universality_fss_engine.py
 ```
 
 ### 3. Extracting the Renormalization Group Exponents
-To execute the centered finite-difference stencils, smooth out discrete grid artifacts via Savitzky-Golay filters, and print out the universal linearized critical exponents ($A$ and $B$):
+`rg_stability_analysis.py` runs the centered finite-difference + Savitzky-Golay procedure at a single configuration (N=100, Barabási-Albert), printing $A$ and $B$:
 ```bash
 python code/rg_stability_analysis.py
+```
+These are **not universal** - see the next script. `critical_exponent_finite_size_scaling.py` repeats the same procedure across $N=50,100,200,400$ and all three topologies, shows $A$/$B$ vary by orders of magnitude (and $B$ changes sign) rather than converging, and fits the more robust pooled near-boundary power law $1+w_{\text{eff}} = C(1-\lambda_1/N)^p$ instead, which **is** stable ($p = 1.122 \pm 0.008$ across the same sweep):
+```bash
+python code/critical_exponent_finite_size_scaling.py
 ```
 
 ## 🧠 Core Physics Framework
@@ -69,7 +74,7 @@ This numerical architecture simulates the structural dynamics of a cosmic crunch
 
 1. **The Repulsive Switch ($w_{\text{eff}} \rightarrow -1.0$)**: Scale deformations fail to dilute matrix weights when distance dependencies collapse. The effective energy density freezes ($\rho_{\text{eff}} \propto a^0$), activating an instantaneous cosmological constant attractor state.
 2. **The Ultraviolet Energy Ceiling ($\lambda_1 = N$)**: Rather than diverging to infinity ($\rho \rightarrow \infty$), the fundamental spectral gap locks onto a rigid algebraic maximum bounded by the total system degrees of freedom. This acts as an inherent geometric shock absorber.
-3. **Universal Attractor Funneling**: The 3D phase space maps out a highly focused trajectory where widely disparate initial network microstates lose all historical memory, collapsing onto a single low-dimensional manifold tracking toward a fixed fractional dimension of $d_s \approx 5.25$.
+3. **Universal Attractor Funneling**: The 3D phase space maps out a highly focused trajectory where widely disparate initial network microstates lose all historical memory, collapsing onto a single low-dimensional manifold. The fractional dimension at this manifold's plateau ($d_s \approx 5.25$ at this paper's reference size $N=100$) is *not* itself universal - it grows with $N$ (see `critical_exponent_finite_size_scaling.py`); the reproducible size-stable quantity is instead the critical exponent $p = 1.122 \pm 0.008$ governing the approach to the fixed point.
 
 ## 📜 Licensing
 
