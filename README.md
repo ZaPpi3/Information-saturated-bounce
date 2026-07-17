@@ -6,19 +6,27 @@ This repository hosts the full numerical simulation ecosystem for an information
 
 ```text
 ├── code/
-│   ├── mi_laplacian_deflation.py        # Maps continuous scale-dependent dimension flows
-│   ├── entanglement_cosmology_solvers.py # Computes finite-size scaling and strict AIC/BIC matrices
-│   ├── saturation_bounce_plots.py       # Simulates equation of state transitions and energy limits
-│   ├── universality_fss_engine.py       # Validates structural invariance across diverse graph families
-│   ├── substrate_robustness_test.py     # Measures tolerance under localized edge-destruction defects
-│   ├── rg_flow_trajectory_engine.py     # Computes the 2D cosmological vector field phase portrait
-│   ├── rg_manifold_3d_engine.py         # Visualizes the unified 3D multivariable RG manifold
-│   └── rg_stability_analysis.py         # Smoothes trajectories and extracts universal critical exponents
-├── figures/                             # High-fidelity publication-grade PNG visualizations
-├── main.tex                             # Production LaTeX manuscript source
-├── main.pdf                             # Compiled preprint manuscript
-└── LICENSE                              # MIT Open-Source License
+│   ├── saturation_bounce_check.py       # Equation-of-state / energy-ceiling sweep (Figs. 1-2)
+│   ├── beta_invariance_check.py         # Quantifies the finite-beta approximation (Table I)
+│   ├── saturation_thermodynamic_scaling.py # Finite-size scaling of the alpha=0 ceiling
+│   ├── universality_fss_engine.py       # Structural invariance across graph families
+│   ├── substrate_robustness_test.py     # Tolerance under localized edge-destruction defects
+│   ├── attractor_stability_stress_test.py # Attractor stability under perturbation
+│   ├── rg_flow_trajectory_engine.py     # 2D cosmological vector field phase portrait
+│   ├── rg_manifold_3d_engine.py         # Unified 3D multivariable RG manifold
+│   ├── rg_beta_function_solver.py       # RG beta-function extraction
+│   ├── rg_stability_analysis.py         # Smooths trajectories, extracts critical exponents
+│   └── spectral_dimension_rg_flow.py    # Spectral dimension along the RG flow
+├── figures/                             # PNG figures referenced by main.tex
+├── main.tex                             # Manuscript source
+├── main.pdf                             # Compiled manuscript
+└── LICENSE                              # MIT License
 ```
+
+Note: this list previously named files (`mi_laplacian_deflation.py`,
+`entanglement_cosmology_solvers.py`, `saturation_bounce_plots.py`) that do
+not exist anywhere in this repository. Corrected to match the actual
+`code/` directory.
 
 ## ⚙️ Installation & System Requirements
 
@@ -36,10 +44,11 @@ pip install numpy scipy matplotlib
 
 Every simulator is self-contained and outputs high-fidelity visuals directly into the `figures/` directory.
 
-### 1. Metric Analysis & Information Criterion Validation
-To run the primary finite-size lattice scaling loops and output the strict information-theoretic selection metrics (AIC/BIC scores):
+### 1. Equation of state, energy ceiling, and the finite-$\beta$ check
 ```bash
-python code/entanglement_cosmology_solvers.py
+python code/saturation_bounce_check.py       # Figs. 1-2
+python code/beta_invariance_check.py         # Table I
+python code/saturation_thermodynamic_scaling.py
 ```
 
 ### 2. Multi-Topology Universality Diagnostics
